@@ -11,12 +11,15 @@
       "test::watch": "jest --watch"
    },
    "dependencies": {
+      "@tanstack/react-query": "^5.62.9",
       "next": "15.1.2",
       "react": "^19.0.0",
       "react-dom": "^19.0.0"
    },
    "devDependencies": {
       "@eslint/eslintrc": "^3",
+      "@tanstack/eslint-plugin-query": "^5.62.9",
+      "@tanstack/react-query-devtools": "^5.62.9",
       "@testing-library/dom": "^10.4.0",
       "@testing-library/jest-dom": "^6.6.3",
       "@testing-library/react": "^16.1.0",
