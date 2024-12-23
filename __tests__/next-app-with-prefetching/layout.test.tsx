@@ -12,11 +12,9 @@ jest.mock("next/font/google", () => ({
    }),
 }));
 
-jest.mock("../../src/app/next-app-with-prefetching/Providers", () => {
-   return jest.fn(({ children }: { children: React.ReactNode }) => (
-      <div data-testid="react-query-provider">{children}</div>
-   ));
-});
+jest.mock("../../src/app/next-app-with-prefetching/Providers", () =>
+   jest.fn(({ children }: { children: React.ReactNode }) => <div data-testid="react-query-provider">{children}</div>)
+);
 
 describe("RootLayout", () => {
    beforeEach(() => {
