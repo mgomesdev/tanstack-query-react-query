@@ -35,7 +35,7 @@ describe("RootLayout", () => {
       jest.restoreAllMocks();
    });
 
-   it("Dever renderizar o html com a lang pt-BR", async () => {
+   it("Dever renderizar o html com a lang pt-BR", () => {
       render(
          <RootLayout>
             <></>
