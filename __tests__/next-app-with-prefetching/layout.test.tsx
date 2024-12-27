@@ -12,7 +12,7 @@ jest.mock("next/font/google", () => ({
    }),
 }));
 
-jest.mock("../../src/app/next-app-with-prefetching/Providers", () =>
+jest.mock("../../src/app/next-app-with-prefetching/ReactQueryProvider", () =>
    jest.fn(({ children }: { children: React.ReactNode }) => <div data-testid="react-query-provider">{children}</div>)
 );
 
