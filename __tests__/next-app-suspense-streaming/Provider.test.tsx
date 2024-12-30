@@ -25,10 +25,6 @@ describe("Provider", () => {
       expect(screen.getByTestId("children")).toBeInTheDocument();
    });
 
-   it("Deve ter uma instancia da classe QueryClient()", () => {
-      expect(QueryClient).toHaveBeenCalled();
-   });
-
    it("Deve instanciar o QueryClientProvider com a prop client configurada com uma instancia de QueryClient", () => {
       const args = (QueryClientProvider as jest.Mock).mock.calls[0][0];
 
