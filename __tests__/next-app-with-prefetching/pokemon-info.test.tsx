@@ -1,6 +1,7 @@
 import { render, screen } from "@testing-library/react";
 import { PokemonInfo } from "@/app/next-app-with-prefetching/pokemon-info";
-import { QueryClient, QueryClientProvider, useSuspenseQuery } from "@tanstack/react-query";
+import { useSuspenseQuery } from "@tanstack/react-query";
+import ReactQueryProvider from "@/app/next-app-with-prefetching/ReactQueryProvider";
 
 jest.mock("@tanstack/react-query", () => {
    return {
@@ -10,8 +11,6 @@ jest.mock("@tanstack/react-query", () => {
 });
 
 describe("Deve renderizar a tela de informações do pokemon corretamente", () => {
-   const queryClient = new QueryClient();
-
    beforeEach(() => {
       (useSuspenseQuery as jest.Mock).mockReturnValue({
          data: {
@@ -23,9 +22,9 @@ describe("Deve renderizar a tela de informações do pokemon corretamente", () =
       });
 
       render(
-         <QueryClientProvider client={queryClient}>
+         <ReactQueryProvider>
             <PokemonInfo />
-         </QueryClientProvider>
+         </ReactQueryProvider>
       );
    });
 
