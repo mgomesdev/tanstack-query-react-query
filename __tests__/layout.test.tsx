@@ -1,5 +1,5 @@
 import { render, screen } from "@testing-library/react";
-import Layout from "@/app/next-app-suspense-streaming/layout";
+import Layout from "@/app/layout";
 
 describe("Layout", () => {
    beforeEach(() => {
