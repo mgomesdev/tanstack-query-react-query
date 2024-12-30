@@ -3,7 +3,11 @@ interface LayoutProps {
 }
 
 function Layout({ children }: LayoutProps) {
-   return <html lang="pt-BR">{children}</html>;
+   return (
+      <html lang="pt-BR">
+         <body data-testid="body">{children}</body>
+      </html>
+   );
 }
 
 export default Layout;

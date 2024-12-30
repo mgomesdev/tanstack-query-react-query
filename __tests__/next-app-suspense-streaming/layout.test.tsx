@@ -1,4 +1,4 @@
-import { render } from "@testing-library/react";
+import { render, screen } from "@testing-library/react";
 import Layout from "@/app/next-app-suspense-streaming/layout";
 
 describe("Layout", () => {
@@ -14,6 +14,16 @@ describe("Layout", () => {
 
    afterEach(() => jest.resetAllMocks());
 
+   it("Deve ter um children no layout", () => {
+      render(
+         <Layout>
+            <div data-testid="children"></div>
+         </Layout>
+      );
+
+      expect(screen.getByTestId("children")).toBeInTheDocument();
+   });
+
    it("Deve configurar a prop lang como pt-BR", () => {
       render(
          <Layout>
@@ -27,7 +37,15 @@ describe("Layout", () => {
       expect(html.getAttribute("lang")).toBe("pt-BR");
    });
 
-   it.todo("Deve renderizar a tag body");
+   it("Deve renderizar a tag body", () => {
+      render(
+         <Layout>
+            <></>
+         </Layout>
+      );
 
-   it.todo("Deve ter o children na tela");
+      const body = document.body;
+
+      expect(body).toBeInTheDocument();
+   });
 });
