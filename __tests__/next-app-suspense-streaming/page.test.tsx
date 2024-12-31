@@ -9,11 +9,12 @@ describe("Page", () => {
             <Page />
          </Layout>
       );
+
       const wait = 100;
       const path = `/api/wait?wait=${wait}`;
       const url = `http://localhost:3000/${path}`;
 
-      waitFor(() => {
+      await waitFor(() => {
          const result = screen.getByTestId("result");
          expect(result).toHaveTextContent(url);
       });
