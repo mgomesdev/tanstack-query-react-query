@@ -20,6 +20,7 @@
       "@eslint/eslintrc": "^3",
       "@tanstack/eslint-plugin-query": "^5.62.9",
       "@tanstack/react-query-devtools": "^5.62.9",
+      "@tanstack/react-query-next-experimental": "^5.62.11",
       "@testing-library/dom": "^10.4.0",
       "@testing-library/jest-dom": "^6.6.3",
       "@testing-library/react": "^16.1.0",

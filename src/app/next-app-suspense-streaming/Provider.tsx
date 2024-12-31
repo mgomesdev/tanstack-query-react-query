@@ -1,6 +1,8 @@
 "use client";
 
 import { isServer, QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
+import { ReactQueryStreamedHydration } from "@tanstack/react-query-next-experimental";
 
 const makeQueryClient = () => {
    return new QueryClient({
@@ -29,7 +31,14 @@ interface ProviderProps {
 }
 
 function Provider({ children }: ProviderProps) {
-   return <QueryClientProvider client={getQueryClient()}>{children}</QueryClientProvider>;
+   return (
+      <QueryClientProvider client={getQueryClient()}>
+         {/*TODO: criar testes para verificar se o </ReactQueryStreamedHydration> está na tela */}
+         <ReactQueryStreamedHydration>{children}</ReactQueryStreamedHydration>
+         {/*TODO: criar testes para verificar se o </ReactQueryDevTools> está na tela */}
+         <ReactQueryDevtools initialIsOpen={false} />
+      </QueryClientProvider>
+   );
 }
 
 export default Provider;
