@@ -87,4 +87,6 @@ describe("RootLayout", () => {
       expect(getBody).toHaveClass("--font-geist-mono");
       expect(getBody).toHaveClass("antialiased");
    });
+
+   it.todo("Deve navegar para a home ao clicar no link");
 });

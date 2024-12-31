@@ -5,11 +5,5 @@ export default function Layout({
 }: Readonly<{
    children: React.ReactNode;
 }>) {
-   return (
-      <html lang="pt-BR">
-         <body>
-            <ReactQueryProvider>{children}</ReactQueryProvider>
-         </body>
-      </html>
-   );
+   return <ReactQueryProvider>{children}</ReactQueryProvider>;
 }
