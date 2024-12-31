@@ -88,5 +88,17 @@ describe("RootLayout", () => {
       expect(getBody).toHaveClass("antialiased");
    });
 
-   it.todo("Deve navegar para a home ao clicar no link");
+   it("Deve navegar para a home ao clicar no link", () => {
+      render(
+         <RootLayout>
+            <></>
+         </RootLayout>
+      );
+
+      const link = screen.getByTestId("home-link");
+
+      expect(link).toBeInTheDocument();
+      expect(link).toHaveTextContent("Home");
+      expect(link).toHaveAttribute("href", "/");
+   });
 });

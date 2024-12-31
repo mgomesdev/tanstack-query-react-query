@@ -27,7 +27,9 @@ function LayoutRoot({ children }: LayoutRootProps) {
    return (
       <html lang="pt-BR">
          <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
-            <Link href={"/"}>Home</Link>
+            <Link data-testid="home-link" href={"/"}>
+               Home
+            </Link>
             {children}
          </body>
       </html>
