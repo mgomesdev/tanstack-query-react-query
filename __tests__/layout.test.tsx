@@ -88,7 +88,7 @@ describe("RootLayout", () => {
       expect(getBody).toHaveClass("antialiased");
    });
 
-   it("Deve navegar para a home ao clicar no link", () => {
+   it("Deve configurar o link de navegação para Home corretamente", () => {
       render(
          <RootLayout>
             <></>

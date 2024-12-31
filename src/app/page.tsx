@@ -4,10 +4,14 @@ function Home() {
    return (
       <ul>
          <li>
-            <Link href={"/next-app-with-prefetching"}>Next App With Prefetching</Link>
+            <Link data-testid="next-app-with-prefetching-link" href={"/next-app-with-prefetching"}>
+               Next App With Prefetching
+            </Link>
          </li>
          <li>
-            <Link href={"/next-app-suspense-streaming"}>Next App Suspense Streaming</Link>
+            <Link data-testid="next-app-suspense-streaming-link" href={"/next-app-suspense-streaming"}>
+               Next App Suspense Streaming
+            </Link>
          </li>
       </ul>
    );
