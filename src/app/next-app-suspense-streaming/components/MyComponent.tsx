@@ -26,7 +26,7 @@ function MyComponent({ wait = 100 }: MyComponentProps) {
       data: query.data,
    };
 
-   return <div>result: {data.data.message}</div>;
+   return <div data-testid="my-component">result: {data.data.message}</div>;
 }
 
 export default MyComponent;

@@ -25,7 +25,7 @@ describe("MyComponent", () => {
       );
 
       await waitFor(() => {
-         expect(screen.getByTestId("result")).toHaveTextContent("waited for 100ms");
+         expect(screen.getByTestId("my-component")).toHaveTextContent("waited for 100ms");
       });
    });
 });
