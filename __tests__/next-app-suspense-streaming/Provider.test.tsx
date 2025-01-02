@@ -10,6 +10,15 @@ jest.mock("@tanstack/react-query", () => {
    };
 });
 
+jest.mock("@tanstack/react-query-next-experimental", () => {
+   return {
+      ...jest.requireActual("@tanstack/react-query-next-experimental"),
+      ReactQueryStreamedHydration: jest.fn(({ children }: { children: React.ReactNode }) => (
+         <div data-testid="streamed-hydratation">{children}</div>
+      )),
+   };
+});
+
 describe("Provider", () => {
    beforeEach(() => {
       render(
@@ -31,5 +40,9 @@ describe("Provider", () => {
       expect(QueryClientProvider).toHaveBeenCalled();
       expect(args.client).toBeInstanceOf(QueryClient);
       expect(args.children).toBeTruthy();
+   });
+
+   it("Deve renderizar o ReactQueryStreamedHydration", () => {
+      expect(screen.getByTestId("streamed-hydratation")).toBeInTheDocument();
    });
 });

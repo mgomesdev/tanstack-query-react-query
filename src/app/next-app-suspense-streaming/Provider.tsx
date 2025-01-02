@@ -33,9 +33,7 @@ interface ProviderProps {
 function Provider({ children }: ProviderProps) {
    return (
       <QueryClientProvider client={getQueryClient()}>
-         {/*TODO: criar testes para verificar se o </ReactQueryStreamedHydration> está na tela */}
          <ReactQueryStreamedHydration>{children}</ReactQueryStreamedHydration>
-         {/*TODO: criar testes para verificar se o </ReactQueryDevTools> está na tela */}
          <ReactQueryDevtools initialIsOpen={false} />
       </QueryClientProvider>
    );
