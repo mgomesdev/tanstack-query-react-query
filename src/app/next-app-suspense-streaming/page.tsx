@@ -6,7 +6,7 @@ import MyComponent from "./components/MyComponent";
 function Page() {
    return (
       <>
-         <Suspense fallback={<div>waiting 100....</div>}>
+         <Suspense fallback={<div data-testid="waiting-100">waiting 100....</div>}>
             <MyComponent wait={100} />
          </Suspense>
          <Suspense fallback={<div>waiting 200....</div>}>

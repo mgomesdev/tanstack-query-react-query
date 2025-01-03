@@ -1,36 +1,45 @@
-import { render, screen, waitFor } from "@testing-library/react";
 import Page from "@/app/next-app-suspense-streaming/page";
-import Layout from "@/app/next-app-with-prefetching/layout";
+import Layout from "@/app/next-app-suspense-streaming/layout";
+import { render, screen } from "@testing-library/react";
+import { useSuspenseQuery } from "@tanstack/react-query";
 
-jest.mock("../../src/app/next-app-suspense-streaming/components/MyComponent", () => {
-   const MockedMyComponent = () => <div data-testid="mocked-mycomponent">Mocked My Component</div>;
-   return MockedMyComponent;
-});
+jest.mock("@tanstack/react-query", () => ({
+   ...jest.requireActual("@tanstack/react-query"),
+   useSuspenseQuery: jest.fn(),
+}));
 
-describe("Page", () => {
-   beforeEach(() => {});
-
-   it("Deve renderizar o loading do suspense", () => {
-      render(
-         <Layout>
-            <Page />
-         </Layout>
-      );
-
-      waitFor(() => {
-         const carregando = screen.getByText("carregando");
-         expect(carregando).toBeInTheDocument();
+describe("Page Component", () => {
+   beforeEach(() => {
+      (useSuspenseQuery as jest.Mock).mockImplementation(({ queryKey }) => {
+         const wait = queryKey[1];
+         return {
+            data: { message: `Resolved after ${wait}ms` },
+         };
       });
    });
 
-   it.skip("Deve renderizar o MyComponent", () => {
+   afterEach(() => {
+      jest.clearAllMocks();
+   });
+
+   it.todo("Deve renderizar os fallbacks de waiting");
+
+   it("should render all MyComponent instances after resolution", async () => {
       render(
          <Layout>
             <Page />
          </Layout>
       );
 
-      const myComponent = screen.getByTestId("mocked-mycomponent");
-      expect(myComponent).toBeInTheDocument();
+      expect(await screen.findByText(/Resolved after 100ms/i)).toBeInTheDocument();
+      expect(await screen.findByText(/Resolved after 200ms/i)).toBeInTheDocument();
+      expect(await screen.findByText(/Resolved after 300ms/i)).toBeInTheDocument();
+      expect(await screen.findByText(/Resolved after 400ms/i)).toBeInTheDocument();
+      expect(await screen.findByText(/Resolved after 500ms/i)).toBeInTheDocument();
+      expect(await screen.findByText(/Resolved after 600ms/i)).toBeInTheDocument();
+      expect(await screen.findByText(/Resolved after 700ms/i)).toBeInTheDocument();
+      expect(await screen.findByText(/Resolved after 800ms/i)).toBeInTheDocument();
+      expect(await screen.findByText(/Resolved after 900ms/i)).toBeInTheDocument();
+      expect(await screen.findByText(/Resolved after 1000ms/i)).toBeInTheDocument();
    });
 });
