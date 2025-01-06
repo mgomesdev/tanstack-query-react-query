@@ -1,5 +1,6 @@
+import { render, screen } from "@testing-library/react";
 import { Metadata } from "next";
-import { metadata } from "../../src/app/react-simple/layout";
+import Layout, { metadata } from "../../src/app/react-simple/layout";
 
 describe("Layout", () => {
    it("Deve configurar o metadata", () => {
@@ -11,5 +12,13 @@ describe("Layout", () => {
       expect(mockMetadata).toEqual(metadata);
    });
 
-   it.todo("O Layout deve possuir um children");
+   it("Deve possuir um children", () => {
+      render(
+         <Layout>
+            <div data-testid="children"></div>
+         </Layout>
+      );
+
+      expect(screen.getByTestId("children")).toBeInTheDocument();
+   });
 });

@@ -7,7 +7,7 @@ interface LayoutProps {
 }
 
 function Layout({ children }: LayoutProps) {
-   return { children };
+   return <>{children}</>;
 }
 
 export default Layout;
