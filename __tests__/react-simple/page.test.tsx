@@ -24,7 +24,19 @@ describe("Page", () => {
          expect(screen.getByText("Loading...")).toBeInTheDocument();
       });
 
-      it.todo("Deve mostrar a mensagem de erro quando der erro na busca dos dados");
+      it("Deve mostrar a mensagem de erro quando der erro na busca dos dados", () => {
+         (useQuery as jest.Mock).mockReturnValue({
+            error: { message: "Network Error" },
+         });
+
+         render(
+            <Layout>
+               <Page />
+            </Layout>
+         );
+
+         expect(screen.getByText("An error has ocurred: Network Error"));
+      });
 
       it.todo("Deve mostrar o full_name");
 

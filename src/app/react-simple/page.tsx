@@ -3,7 +3,7 @@
 import { useQuery } from "@tanstack/react-query";
 
 function Page() {
-   const { isPending } = useQuery({
+   const { isPending, error } = useQuery({
       queryKey: ["repoData"],
       queryFn: async () => {
          const response = await fetch("https://api.github.com/repos/TanStack/query");
@@ -12,6 +12,8 @@ function Page() {
    });
 
    if (isPending) return "Loading...";
+
+   if (error) return "An error has ocurred: " + error.message;
 
    return <>Simple</>;
 }
