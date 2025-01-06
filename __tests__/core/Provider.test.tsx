@@ -1,5 +1,5 @@
 import { render, screen } from "@testing-library/react";
-import Provider from "@/app/next-app-suspense-streaming/Provider";
+import Provider from "@/app/core/Provider";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 
 jest.mock("@tanstack/react-query", () => {

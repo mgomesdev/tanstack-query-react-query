@@ -1,7 +1,7 @@
 import { render, screen } from "@testing-library/react";
 import Layout, { metadata } from "@/app/next-app-suspense-streaming/layout";
 
-jest.mock("../../src/app/next-app-suspense-streaming/Provider", () =>
+jest.mock("../../src/app/core/Provider", () =>
    jest.fn(({ children }: { children: React.ReactNode }) => <div data-testid="react-query-provider">{children}</div>)
 );
 

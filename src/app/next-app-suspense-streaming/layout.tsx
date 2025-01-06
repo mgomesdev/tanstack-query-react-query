@@ -1,5 +1,5 @@
 import { Metadata } from "next";
-import Provider from "./Provider";
+import Provider from "../core/Provider";
 
 export const metadata: Metadata = {
    title: "Next.js",

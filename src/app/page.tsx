@@ -13,6 +13,12 @@ function Home() {
                Next App Suspense Streaming
             </Link>
          </li>
+
+         <li>
+            <Link data-testid="react-simple" href={"/react-simple"}>
+               React Simple
+            </Link>
+         </li>
       </ul>
    );
 }

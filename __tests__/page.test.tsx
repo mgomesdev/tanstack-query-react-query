@@ -5,9 +5,11 @@ import Page from "../src/app/page";
 
 describe("Home", () => {
    describe("Deve configurar os links de navegação corretamente", () => {
-      it("Next Prefetching Link", () => {
+      beforeEach(() => {
          render(<Page />);
+      });
 
+      it("Next Prefetching Link", () => {
          const nextPrefetchingLink = screen.getByTestId("next-app-with-prefetching-link");
 
          expect(nextPrefetchingLink).toBeInTheDocument();
@@ -16,13 +18,19 @@ describe("Home", () => {
       });
 
       it("Next App Suspense Streaming Link", () => {
-         render(<Page />);
-
          const nextSuspenseStreamingLink = screen.getByTestId("next-app-suspense-streaming-link");
 
          expect(nextSuspenseStreamingLink).toBeInTheDocument();
          expect(nextSuspenseStreamingLink).toHaveTextContent("Next App Suspense Streaming");
          expect(nextSuspenseStreamingLink).toHaveAttribute("href", "/next-app-suspense-streaming");
+      });
+
+      it("React Simple Link", () => {
+         const reactSimpleLink = screen.getByTestId("react-simple");
+
+         expect(reactSimpleLink).toBeInTheDocument();
+         expect(reactSimpleLink).toHaveTextContent("React Simple");
+         expect(reactSimpleLink).toHaveAttribute("href", "/react-simple");
       });
    });
 });
