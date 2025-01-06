@@ -11,6 +11,8 @@ jest.mock("@tanstack/react-query", () => {
 });
 
 describe("Page", () => {
+   afterEach(() => jest.clearAllMocks());
+
    describe("Deve mostrar os dados do repositório corretamente", () => {
       it("Deve mostrar a mensagem Loading... enquanto busca os dados", () => {
          (useQuery as jest.Mock).mockReturnValue({ isPending: true });
@@ -38,16 +40,43 @@ describe("Page", () => {
          expect(screen.getByText("An error has ocurred: Network Error"));
       });
 
-      it.todo("Deve mostrar o full_name");
+      describe("Deve renderizar as informações do github", () => {
+         beforeEach(() => {
+            (useQuery as jest.Mock).mockReturnValue({
+               isPending: false,
+               error: null,
+               data: {
+                  full_name: "TansTack/query",
+                  description: "Powerfull React Query library",
+                  subscribers_count: 100,
+                  stargazers_count: 5000,
+                  forks_count: 300,
+               },
+               isFetching: false,
+            });
 
-      it.todo("Deve mostrar a description");
+            render(
+               <Layout>
+                  <Page />
+               </Layout>
+            );
+         });
 
-      it.todo("Deve mostrar o subscribers_count");
+         it("Deve mostrar o full_name", () => {
+            expect(screen.getByText("TansTack/query")).toBeInTheDocument();
+         });
 
-      it.todo("Deve mostrar o stargazers_count");
+         it("Deve mostrar a description", () => {
+            throw "Parei aqui, mostrar as outras informações antes de avançar.";
+         });
 
-      it.todo("Deve mostrar o forks_count");
+         it.todo("Deve mostrar o subscribers_count");
 
-      it.todo("Deve a mensagem Updating... enquanto atualiza os dados");
+         it.todo("Deve mostrar o stargazers_count");
+
+         it.todo("Deve mostrar o forks_count");
+
+         it.todo("Deve a mensagem Updating... enquanto atualiza os dados");
+      });
    });
 });
