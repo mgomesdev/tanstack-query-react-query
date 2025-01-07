@@ -1,5 +1,15 @@
 describe("react-basic: Page", () => {
-   it.todo("Deve renderizar a frase de chamada");
+   it("Deve renderizar a frase de chamada", () => {
+      throw [
+         "Proximos passos",
+         "Criar a interface com dados constantes (fixtures e mocks) e manter a barra verde.",
+         "Substituir os dados constantes por variaveis (valores reais mockados) caminhando para a barra continuar verde.",
+         "Revisar e remover duplicações e fazer melhorias pontuais no código.",
+         "Analisar e planejar os proximos passos, criar as suites de testes e todos, rever o que foi aprendido e treinar comunicação para apresentar e explicar o que foi feito.",
+         "publicar o código, fazer possiveis ajustes da codereview, verificar se a pipeline rodou, se o novo código foi publicado na homologação e atualizar/organizar os status das tarefas do jira.",
+         "Iniciar pausa de 30 min para começar a proxima sessão de outra tarefa (virar a chavinha).",
+      ];
+   });
 
    it.todo("Deve renderizar os posts");
 
