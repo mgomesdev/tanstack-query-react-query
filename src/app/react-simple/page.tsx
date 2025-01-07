@@ -17,19 +17,23 @@ function Page() {
    if (error) return "An error has ocurred: " + error.message;
 
    return (
-      <div>
-         <h1>{data.full_name}</h1>
+      <div className="flex flex-col gap-3">
+         <h1 className="text-2xl font-bold">{data.full_name}</h1>
          <p>{data.description}</p>
-         <strong>
-            <span>👀</span> {data.subscribers_count}
-         </strong>
-         <strong>
-            <span>✨</span> {data.stargazers_count}
-         </strong>
-         <strong>
-            <span>🍴</span> {data.forks_count}
-         </strong>
-         <div>{isFetching ? "Updating..." : ""}</div>
+
+         <div className="flex gap-3">
+            <strong>
+               <span>👀</span> {data.subscribers_count}
+            </strong>
+            <strong>
+               <span>✨</span> {data.stargazers_count}
+            </strong>
+            <strong>
+               <span>🍴</span> {data.forks_count}
+            </strong>
+         </div>
+
+         <p>{isFetching ? "Updating..." : ""}</p>
       </div>
    );
 }
