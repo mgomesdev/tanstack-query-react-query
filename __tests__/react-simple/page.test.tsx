@@ -11,9 +11,17 @@ jest.mock("@tanstack/react-query", () => {
 });
 
 describe("Page", () => {
-   afterEach(() => jest.clearAllMocks());
-
    describe("Deve mostrar os dados do repositório corretamente", () => {
+      afterEach(() => jest.clearAllMocks());
+
+      const mockData = {
+         full_name: "TansTack/query",
+         description: "Powerfull React Query library",
+         subscribers_count: 100,
+         stargazers_count: 5000,
+         forks_count: 300,
+      };
+
       it("Deve mostrar a mensagem Loading... enquanto busca os dados", () => {
          (useQuery as jest.Mock).mockReturnValue({ isPending: true });
 
@@ -41,14 +49,6 @@ describe("Page", () => {
       });
 
       it("Deve renderizar as informações do github", () => {
-         const mockData = {
-            full_name: "TansTack/query",
-            description: "Powerfull React Query library",
-            subscribers_count: 100,
-            stargazers_count: 5000,
-            forks_count: 300,
-         };
-
          (useQuery as jest.Mock).mockReturnValue({
             isPending: false,
             error: null,
@@ -68,6 +68,19 @@ describe("Page", () => {
          expect(screen.getByText(mockData.forks_count)).toBeInTheDocument();
       });
 
-      it.todo("Deve a mensagem Updating... enquanto atualiza os dados");
+      it("Deve a mensagem Updating... enquanto atualiza os dados", () => {
+         (useQuery as jest.Mock).mockReturnValue({
+            data: mockData,
+            isFetching: true,
+         });
+
+         render(
+            <Layout>
+               <Page />
+            </Layout>
+         );
+
+         expect(screen.getByText("Updating...")).toBeInTheDocument();
+      });
    });
 });
