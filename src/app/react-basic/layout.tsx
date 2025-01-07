@@ -1,4 +1,5 @@
 import { Metadata } from "next";
+import Provider from "../core/Provider";
 
 export const metadata: Metadata = {
    title: "React Basic",
@@ -10,7 +11,7 @@ interface LayoutReactBasicProps {
 }
 
 function LayoutReactBasic({ children }: LayoutReactBasicProps) {
-   return <>{children}</>;
+   return <Provider>{children}</Provider>;
 }
 
 export default LayoutReactBasic;
