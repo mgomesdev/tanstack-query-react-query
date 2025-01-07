@@ -40,43 +40,34 @@ describe("Page", () => {
          expect(screen.getByText("An error has ocurred: Network Error"));
       });
 
-      describe("Deve renderizar as informações do github", () => {
-         beforeEach(() => {
-            (useQuery as jest.Mock).mockReturnValue({
-               isPending: false,
-               error: null,
-               data: {
-                  full_name: "TansTack/query",
-                  description: "Powerfull React Query library",
-                  subscribers_count: 100,
-                  stargazers_count: 5000,
-                  forks_count: 300,
-               },
-               isFetching: false,
-            });
+      it("Deve renderizar as informações do github", () => {
+         const mockData = {
+            full_name: "TansTack/query",
+            description: "Powerfull React Query library",
+            subscribers_count: 100,
+            stargazers_count: 5000,
+            forks_count: 300,
+         };
 
-            render(
-               <Layout>
-                  <Page />
-               </Layout>
-            );
+         (useQuery as jest.Mock).mockReturnValue({
+            isPending: false,
+            error: null,
+            data: mockData,
+            isFetching: false,
          });
 
-         it("Deve mostrar o full_name", () => {
-            expect(screen.getByText("TansTack/query")).toBeInTheDocument();
-         });
+         render(
+            <Layout>
+               <Page />
+            </Layout>
+         );
 
-         it("Deve mostrar a description", () => {
-            throw "Parei aqui, mostrar as outras informações antes de avançar.";
-         });
-
-         it.todo("Deve mostrar o subscribers_count");
-
-         it.todo("Deve mostrar o stargazers_count");
-
-         it.todo("Deve mostrar o forks_count");
-
-         it.todo("Deve a mensagem Updating... enquanto atualiza os dados");
+         expect(screen.getByText(mockData.full_name)).toBeInTheDocument();
+         expect(screen.getByText(mockData.description)).toBeInTheDocument();
+         expect(screen.getByText(mockData.subscribers_count)).toBeInTheDocument();
+         expect(screen.getByText(mockData.forks_count)).toBeInTheDocument();
       });
+
+      it.todo("Deve a mensagem Updating... enquanto atualiza os dados");
    });
 });

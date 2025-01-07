@@ -1,9 +1,10 @@
 "use client";
 
 import { useQuery } from "@tanstack/react-query";
+import TanStackQueryApiResponseSchema from "./schema/TanStackQueryApiSchema";
 
 function Page() {
-   const { isPending, error, data } = useQuery({
+   const { isPending, isFetching, error, data } = useQuery<TanStackQueryApiResponseSchema>({
       queryKey: ["repoData"],
       queryFn: async () => {
          const response = await fetch("https://api.github.com/repos/TanStack/query");
@@ -18,6 +19,17 @@ function Page() {
    return (
       <div>
          <h1>{data.full_name}</h1>
+         <p>{data.description}</p>
+         <strong>
+            <span>👀</span> {data.subscribers_count}
+         </strong>
+         <strong>
+            <span>✨</span> {data.stargazers_count}
+         </strong>
+         <strong>
+            <span>🍴</span> {data.forks_count}
+         </strong>
+         <div>{isFetching ? "Updating..." : ""}</div>
       </div>
    );
 }
