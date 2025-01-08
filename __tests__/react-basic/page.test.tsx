@@ -1,5 +1,8 @@
+import PageReactBasic from "@/app/react-basic/page";
+import { render, screen } from "@testing-library/react";
+
 describe("react-basic: Page", () => {
-   it("Deve renderizar a frase de chamada", () => {
+   it.skip("Deve renderizar a frase de chamada", () => {
       throw [
          "Proximos passos",
          "Criar a interface com dados constantes (fixtures e mocks) e manter a barra verde.",
@@ -11,7 +14,15 @@ describe("react-basic: Page", () => {
       ];
    });
 
-   it.todo("Deve renderizar os posts");
+   it("Deve renderizar o page corretamente", () => {
+      render(<PageReactBasic />);
+
+      expect(
+         screen.getByText(/As you visit the posts below, you will notice them in a loading state/)
+      ).toBeInTheDocument();
+
+      expect(screen.getByText(/(You may need to throttle your network speed to simulate longer loading sequences)/));
+   });
 
    describe("Post", () => {
       it.todo("Deve renderizar o link de voltar");
