@@ -1,5 +1,6 @@
 import PageReactBasic from "@/app/react-basic/page";
-import { render, screen } from "@testing-library/react";
+import { render, screen, waitFor } from "@testing-library/react";
+import React from "react";
 
 describe("react-basic: Page", () => {
    it.skip("Deve renderizar a frase de chamada", () => {
@@ -14,14 +15,33 @@ describe("react-basic: Page", () => {
       ];
    });
 
-   it("Deve renderizar o page corretamente", () => {
-      render(<PageReactBasic />);
+   describe("Deve renderizar o page corretamente", () => {
+      it.todo("Deve renderizar o PersistQueryClientProvider com children, queryClient e persistOpotions");
 
-      expect(
-         screen.getByText(/As you visit the posts below, you will notice them in a loading state/)
-      ).toBeInTheDocument();
+      it("Deve renderizar os paragrafos", () => {
+         render(<PageReactBasic />);
 
-      expect(screen.getByText(/(You may need to throttle your network speed to simulate longer loading sequences)/));
+         expect(
+            screen.getByText(/As you visit the posts below, you will notice them in a loading state/)
+         ).toBeInTheDocument();
+
+         expect(screen.getByText(/(You may need to throttle your network speed to simulate longer loading sequences)/));
+      });
+
+      it("Deve renderizar os Posts caso o postID seja -1", () => {
+         render(<PageReactBasic />);
+         expect(screen.getByTestId("posts-list")).toBeInTheDocument();
+      });
+
+      it("Deve renderizar o Post caso o postID seja maior que -1", () => {
+         jest.spyOn(React, "useState").mockImplementationOnce(() => [1, jest.fn()]);
+
+         render(<PageReactBasic />);
+
+         waitFor(() => {
+            expect(screen.getByTestId("posts-list")).toBeInTheDocument();
+         });
+      });
    });
 
    describe("Post", () => {
