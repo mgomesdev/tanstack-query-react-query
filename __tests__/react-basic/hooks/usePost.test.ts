@@ -5,12 +5,14 @@ jest.mock("../../../src/app/react-basic/hooks/usePost");
 describe("usePost: react-basic", () => {
    const mockUsePostResponse = {
       status: "pending",
-      data: {
-         title: "title",
-         body: "body",
-      },
+      data: null,
       error: {},
       isFetching: false,
+   };
+
+   const mockData = {
+      title: "title",
+      body: "body",
    };
 
    it("Deve retornar o status pending enquanto busca os dados", () => {
@@ -33,5 +35,15 @@ describe("usePost: react-basic", () => {
       expect(error).toBe("Ocorreu um erro!");
    });
 
-   it.todo("Deve retornar os dados quando o status for igual a fullied");
+   it("Deve retornar os dados quando o status for igual a fullied", () => {
+      (usePost as jest.Mock).mockReturnValueOnce({
+         ...mockUsePostResponse,
+         status: "fullied",
+         data: mockData,
+      });
+
+      const { data } = usePost(7);
+
+      expect(data).toEqual(mockData);
+   });
 });
