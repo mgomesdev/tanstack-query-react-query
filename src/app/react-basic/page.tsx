@@ -1,18 +1,10 @@
 import React, { useState } from "react";
+import Post, { PostProps } from "./components/Post";
 
 interface PostsProps extends Pick<PostProps, "setPostID"> {}
 
 const Posts: React.FC<PostsProps> = ({ setPostID }) => {
    return <div data-testid="posts-list">posts</div>;
-};
-
-interface PostProps {
-   postID: number;
-   setPostID: React.Dispatch<React.SetStateAction<number>>;
-}
-
-const Post: React.FC<PostProps> = ({ postID, setPostID }) => {
-   return <div data-testid="post-detail">PostID: {postID}</div>;
 };
 
 function PageReactBasic() {
