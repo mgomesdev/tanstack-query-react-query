@@ -73,7 +73,17 @@ describe("react-basic: Page", () => {
          expect(screen.getByText("Loading...")).toBeInTheDocument();
       });
 
-      it.todo("Deve renderizar a mensagem de Error quando ocorrer um erro na busca dos dados");
+      it("Deve renderizar a mensagem de Error quando ocorrer um erro na busca dos dados", () => {
+         (usePost as jest.Mock).mockReturnValueOnce({
+            ...mockPostResponse,
+            status: "error",
+            error: { message: "ocorreu um erro!" },
+         });
+
+         render(<Post postID={7} setPostID={mockSetPostID} />);
+
+         expect(screen.getByText("Error: ocorreu um erro!"));
+      });
 
       it.todo("Deve mostrar as informações do post");
 

@@ -1,7 +1,7 @@
 export const usePost = (
    postID: number
 ): {
-   status: "pending";
+   status: "pending" | "error";
    data: { title: string; body: string };
    error: { message?: string };
    isFetching: boolean;
