@@ -85,7 +85,16 @@ describe("react-basic: Page", () => {
          expect(screen.getByText("Error: ocorreu um erro!"));
       });
 
-      it.todo("Deve mostrar as informações do post");
+      it("Deve mostrar as informações do post", () => {
+         (usePost as jest.Mock).mockReturnValueOnce({ ...mockPostResponse, status: "fullied" });
+
+         render(<Post postID={7} setPostID={mockSetPostID} />);
+
+         expect(screen.getByRole("heading")).toBeInTheDocument();
+         expect(screen.getByRole("heading")).toHaveTextContent(mockPostResponse.data.title);
+         expect(screen.getByRole("paragraph")).toBeInTheDocument();
+         expect(screen.getByRole("paragraph")).toHaveTextContent(mockPostResponse.data.body);
+      });
 
       it.todo("Deve mostrar a mensagem de Background Updating enquanto atualiza os dados.");
    });
