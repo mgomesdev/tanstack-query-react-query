@@ -1,18 +1,12 @@
+import { usePost } from "../hooks/usePost";
+
 export interface PostProps {
    postID: number;
    setPostID: React.Dispatch<React.SetStateAction<number>>;
 }
 
 function Post({ postID, setPostID }: PostProps) {
-   const { status, data, error, isFetching } = {
-      status: "ok",
-      data: {
-         title: "title",
-         body: "body",
-      },
-      error: null,
-      isFetching: false,
-   };
+   const { status, data, error, isFetching } = usePost(postID);
 
    return (
       <div data-testid="post-detail">
@@ -21,6 +15,20 @@ function Post({ postID, setPostID }: PostProps) {
                Back
             </a>
          </div>
+
+         {!postID || status === "pending" ? (
+            "Loading..."
+         ) : status === "error" ? (
+            <span>Error: {error.message}</span>
+         ) : (
+            <>
+               <h1>{data.title}</h1>
+               <div>
+                  <p>{data.body}</p>
+               </div>
+               <div>{isFetching ? "Background Updating..." : " "}</div>
+            </>
+         )}
       </div>
    );
 }

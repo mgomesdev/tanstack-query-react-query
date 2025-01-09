@@ -1,7 +1,10 @@
 import Post from "@/app/react-basic/components/Post";
+import { usePost } from "@/app/react-basic/hooks/usePost";
 import PageReactBasic from "@/app/react-basic/page";
 import { fireEvent, render, screen, waitFor } from "@testing-library/react";
 import React from "react";
+
+jest.mock("../../src/app/react-basic/hooks/usePost");
 
 describe("react-basic: Page", () => {
    beforeEach(() => jest.clearAllMocks());
@@ -36,8 +39,20 @@ describe("react-basic: Page", () => {
    });
 
    describe("Post", () => {
-      it("Deve renderizar o link de voltar", () => {
-         const mockSetPostID = jest.fn();
+      const mockPostResponse = {
+         status: "fullied",
+         data: {
+            title: "title",
+            body: "body",
+         },
+         error: {},
+         isFetching: false,
+      };
+
+      const mockSetPostID = jest.fn();
+
+      it("Deve renderizar o link de voltar corretamente", () => {
+         (usePost as jest.Mock).mockReturnValueOnce(mockPostResponse);
 
          render(<Post postID={7} setPostID={mockSetPostID} />);
 
@@ -50,7 +65,13 @@ describe("react-basic: Page", () => {
          expect(mockSetPostID).toHaveBeenCalledWith(-1);
       });
 
-      it.todo("Deve renderizar a mensagem de Loading enquanto busca os dados.");
+      it("Deve renderizar a mensagem de Loading enquanto busca os dados.", () => {
+         (usePost as jest.Mock).mockReturnValueOnce({ ...mockPostResponse, status: "pending" });
+
+         render(<Post postID={7} setPostID={mockSetPostID} />);
+
+         expect(screen.getByText("Loading...")).toBeInTheDocument();
+      });
 
       it.todo("Deve renderizar a mensagem de Error quando ocorrer um erro na busca dos dados");
 
