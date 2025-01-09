@@ -46,10 +46,10 @@ describe("react-basic: Page", () => {
       it.todo("Deve mostrar a mensagem de Background Updating enquanto atualiza os dados.");
    });
 
-   it.skip("Deve renderizar a frase de chamada", () => {
+   it("Proximos passos", () => {
       throw [
-         "Proximos passos",
-         "Criar a interface com dados constantes (fixtures e mocks) e manter a barra verde.",
+         "Criar a interface e os tests do component Posts.",
+         "Criar teste no component Page -> Deve renderizar o PersistQueryClientProvider com children, queryClient e persistOpotions",
          "Substituir os dados constantes por variaveis (valores reais mockados) caminhando para a barra continuar verde.",
          "Revisar e remover duplicações e fazer melhorias pontuais no código.",
          "Analisar e planejar os proximos passos, criar as suites de testes e todos, rever o que foi aprendido e treinar comunicação para apresentar e explicar o que foi feito.",
