@@ -6,11 +6,11 @@ O objetivo deste respositório é ter um local onde eu possa realizar todos os m
 
 | NextJS           | Status         |
 | ---------------- | ----------------- |
-|       [next-app-with-prefetching](https://github.com/mgomesdev/tanstack-query-react-query/tree/main/src/app/next-app-with-prefetching)    | ~~concluído~~           |
+|       [next-app-with-prefetching](https://github.com/mgomesdev/tanstack-query-react-query-playground/tree/main/__tests__/next-app-with-prefetching)    | ~~concluído~~           |
 | [next-app-suspense-streaming](https://github.com/mgomesdev/tanstack-query-react-query/tree/main/__tests__/next-app-suspense-streaming)     | ~~concluído~~               |
 
 
 | ReactJS           | Status         |
 | ---------------- | ----------------- |
 |  [react-simple](https://github.com/mgomesdev/tanstack-query-react-query-playground/tree/main/__tests__/react-simple)          | ~~concluído~~          |
-| [react-basic](https://github.com/mgomesdev/nextjs-docs/tree/main/__tests__/data-fetching-and-caching/parallel-and-sequential-data-fetching](https://github.com/mgomesdev/tanstack-query-react-query/tree/main/__tests__/react-basic)) | andamento |
+| [react-basic](https://github.com/mgomesdev/tanstack-query-react-query-playground/tree/main/__tests__/react-basic) | andamento |
