@@ -12,5 +12,5 @@ O objetivo deste respositório é ter um local onde eu possa realizar todos os m
 
 | ReactJS           | Status         |
 | ---------------- | ----------------- |
-|  [react-simple](https://github.com/mgomesdev/nextjs-docs/tree/main/__tests__/data-fetching-and-caching/reusing-data-across-multiple-functions](https://github.com/mgomesdev/tanstack-query-react-query/tree/main/__tests__/react-simple))          | ~~concluído~~          |
+|  [react-simple](https://github.com/mgomesdev/tanstack-query-react-query-playground/tree/main/__tests__/react-simple)          | ~~concluído~~          |
 | [react-basic](https://github.com/mgomesdev/nextjs-docs/tree/main/__tests__/data-fetching-and-caching/parallel-and-sequential-data-fetching](https://github.com/mgomesdev/tanstack-query-react-query/tree/main/__tests__/react-basic)) | andamento |
