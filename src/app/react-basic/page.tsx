@@ -1,11 +1,8 @@
+"use client";
+
 import React, { useState } from "react";
-import Post, { PostProps } from "./components/Post";
-
-interface PostsProps extends Pick<PostProps, "setPostID"> {}
-
-const Posts: React.FC<PostsProps> = ({ setPostID }) => {
-   return <div data-testid="posts-list">posts</div>;
-};
+import Post from "./components/Post";
+import Posts from "./components/Posts";
 
 function PageReactBasic() {
    const [postID, setPostID] = useState(-1);

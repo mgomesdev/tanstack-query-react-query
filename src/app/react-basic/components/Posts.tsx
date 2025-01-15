@@ -1,23 +1,16 @@
+"use client";
+
 import { useQueryClient } from "@tanstack/react-query";
 import React from "react";
 import PostSchema from "../schemas/PostSchema";
-
-interface UsePostsReturn {
-   status: string;
-   data: Array<PostSchema>;
-   error: {
-      message?: string;
-   };
-   isFetching: boolean;
-}
+import { usePosts } from "../hooks/usePosts";
 
 interface PostsProps {
    setPostID: React.Dispatch<React.SetStateAction<number>>;
-   usePostsTemp: UsePostsReturn;
 }
 
-async function Posts({ setPostID, usePostsTemp }: PostsProps) {
-   const { status, data, error, isFetching } = usePostsTemp;
+function Posts({ setPostID }: PostsProps) {
+   const { status, data, error, isFetching } = usePosts();
 
    return (
       <div>
@@ -32,7 +25,7 @@ async function Posts({ setPostID, usePostsTemp }: PostsProps) {
                <>
                   <div>
                      {data.map((post) => (
-                        <p key={post.title}>
+                        <p key={post.id}>
                            <Link post={post} setPostID={setPostID} label={post.title} />
                         </p>
                      ))}

@@ -1,3 +1,5 @@
+"use client";
+
 import { usePost } from "../hooks/usePost";
 
 export interface PostProps {
@@ -22,9 +24,9 @@ function Post({ postID, setPostID }: PostProps) {
             <span>Error: {error.message}</span>
          ) : (
             <>
-               <h1>{data.title}</h1>
+               <h1>{data[0].title}</h1>
                <div>
-                  <p>{data.body}</p>
+                  <p>{data[0].body}</p>
                </div>
                <div>{isFetching ? "Background Updating..." : " "}</div>
             </>

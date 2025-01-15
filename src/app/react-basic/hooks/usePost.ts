@@ -1,11 +1,15 @@
-export const usePost = (
-   postID: number
-): {
+import PostSchema from "../schemas/PostSchema";
+
+export interface UsePostReturn {
    status: string;
-   data: { id: number; title: string; body: string };
-   error: { message?: string };
+   data: Array<PostSchema>;
+   error: {
+      message?: string;
+   };
    isFetching: boolean;
-} => {
+}
+
+export const usePost = (postID: number): UsePostReturn => {
    const posts = [
       {
          id: 1,
@@ -23,7 +27,7 @@ export const usePost = (
 
    const result = {
       status: "pending",
-      data: filterPosts[0],
+      data: filterPosts,
       error: {},
       isFetching: false,
    };
