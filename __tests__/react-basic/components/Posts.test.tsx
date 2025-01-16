@@ -93,8 +93,4 @@ describe("Posts: react-basic", () => {
          expect(screen.getByText("Background Updating...")).toBeInTheDocument();
       });
    });
-
-   it.skip("Proximos passos", () => {
-      throw ["criar os testes de usePosts", "substituir dados constantes por variaveis -> useQuery -> react query"];
-   });
 });
