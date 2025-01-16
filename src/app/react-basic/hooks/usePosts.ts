@@ -1,25 +1,12 @@
-import { UsePostReturn } from "../schemas/PostSchema";
+import { useQuery } from "@tanstack/react-query";
+import PostSchema from "../schemas/PostSchema";
 
-export const usePosts = (): UsePostReturn => {
-   const posts = [
-      {
-         id: 1,
-         title: "title1",
-         body: "body1",
+export function usePosts() {
+   return useQuery({
+      queryKey: ["posts"],
+      queryFn: async (): Promise<PostSchema[]> => {
+         const response = await fetch("https://jsonplaceholder.typicode.com/posts");
+         return await response.json();
       },
-      {
-         id: 2,
-         title: "title2",
-         body: "body2",
-      },
-   ];
-
-   const result = {
-      status: "fulfilled",
-      data: posts,
-      error: {},
-      isFetching: false,
-   };
-
-   return result;
-};
+   });
+}

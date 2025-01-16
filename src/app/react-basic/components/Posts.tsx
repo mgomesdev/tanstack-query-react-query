@@ -1,16 +1,19 @@
 "use client";
 
-import { useQueryClient } from "@tanstack/react-query";
+import { useQueryClient, UseQueryResult } from "@tanstack/react-query";
 import React from "react";
 import PostSchema from "../schemas/PostSchema";
-import { usePosts } from "../hooks/usePosts";
 
 interface PostsProps {
    setPostID: React.Dispatch<React.SetStateAction<number>>;
+   usePosts: () => UseQueryResult<PostSchema[], Error>;
 }
 
-function Posts({ setPostID }: PostsProps) {
+function Posts({ setPostID, usePosts }: PostsProps) {
    const { status, data, error, isFetching } = usePosts();
+
+   const a = usePosts();
+   console.log(a);
 
    return (
       <div>

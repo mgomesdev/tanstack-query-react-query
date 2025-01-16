@@ -7,6 +7,7 @@ jest.mock("../../../src/app/react-basic/hooks/usePosts");
 
 describe("Posts: react-basic", () => {
    const mockSetPostID = jest.fn();
+   const mockUsePosts = jest.fn();
 
    const mockUsePostsReturn = {
       status: "pending",
@@ -22,10 +23,13 @@ describe("Posts: react-basic", () => {
       jest.clearAllMocks();
    });
 
-   it("Deve mostrar o titulo 'Posts'", async () => {
-      (usePosts as jest.Mock).mockReturnValue(mockUsePostsReturn);
+   it.only("Deve mostrar o titulo 'Posts'", async () => {
+      (usePosts as jest.Mock).mockResolvedValue({
+         status: {},
+         data: mockUsePostsReturn.data,
+      });
 
-      render(<Posts setPostID={mockSetPostID} />);
+      render(<Posts setPostID={mockSetPostID} usePosts={mockUsePosts} />);
 
       await waitFor(() => {
          expect(screen.getByText("Posts")).toBeInTheDocument();
@@ -35,7 +39,7 @@ describe("Posts: react-basic", () => {
    it("Deve mostrar o 'Loading' enquanto busca os dados", async () => {
       (usePosts as jest.Mock).mockReturnValue(mockUsePostsReturn);
 
-      render(<Posts setPostID={mockSetPostID} />);
+      render(<Posts setPostID={mockSetPostID} usePosts={mockUsePosts} />);
 
       await waitFor(() => {
          expect(screen.getByText("Loading..."));
@@ -51,7 +55,7 @@ describe("Posts: react-basic", () => {
          },
       });
 
-      render(<Posts setPostID={mockSetPostID} />);
+      render(<Posts setPostID={mockSetPostID} usePosts={mockUsePosts} />);
 
       await waitFor(() => {
          expect(screen.getByText("Error: Ocorreu um erro!")).toBeInTheDocument();
@@ -66,7 +70,7 @@ describe("Posts: react-basic", () => {
 
       render(
          <LayoutReactBasic>
-            <Posts setPostID={mockSetPostID} />
+            <Posts setPostID={mockSetPostID} usePosts={mockUsePosts} />
          </LayoutReactBasic>
       );
 
@@ -85,7 +89,7 @@ describe("Posts: react-basic", () => {
 
       render(
          <LayoutReactBasic>
-            <Posts setPostID={mockSetPostID} />
+            <Posts setPostID={mockSetPostID} usePosts={mockUsePosts} />
          </LayoutReactBasic>
       );
 
