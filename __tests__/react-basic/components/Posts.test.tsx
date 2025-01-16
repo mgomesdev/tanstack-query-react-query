@@ -25,8 +25,9 @@ describe("Posts: react-basic", () => {
    it("Deve mostrar o titulo 'Posts'", async () => {
       (usePosts as jest.Mock).mockReturnValue(mockUsePostsReturn);
 
+      render(<Posts setPostID={mockSetPostID} />);
+
       await waitFor(() => {
-         render(<Posts setPostID={mockSetPostID} />);
          expect(screen.getByText("Posts")).toBeInTheDocument();
       });
    });
@@ -34,8 +35,9 @@ describe("Posts: react-basic", () => {
    it("Deve mostrar o 'Loading' enquanto busca os dados", async () => {
       (usePosts as jest.Mock).mockReturnValue(mockUsePostsReturn);
 
+      render(<Posts setPostID={mockSetPostID} />);
+
       await waitFor(() => {
-         render(<Posts setPostID={mockSetPostID} />);
          expect(screen.getByText("Loading..."));
       });
    });
@@ -49,8 +51,9 @@ describe("Posts: react-basic", () => {
          },
       });
 
+      render(<Posts setPostID={mockSetPostID} />);
+
       await waitFor(() => {
-         render(<Posts setPostID={mockSetPostID} />);
          expect(screen.getByText("Error: Ocorreu um erro!")).toBeInTheDocument();
       });
    });
