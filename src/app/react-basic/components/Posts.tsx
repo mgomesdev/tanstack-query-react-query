@@ -25,7 +25,7 @@ function Posts({ setPostID }: PostsProps) {
                <>
                   <div>
                      {data.map((post) => (
-                        <p key={post.id}>
+                        <p key={post.id} data-testid="post-item">
                            <Link post={post} setPostID={setPostID} label={post.title} />
                         </p>
                      ))}

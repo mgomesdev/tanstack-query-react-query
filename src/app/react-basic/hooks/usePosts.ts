@@ -15,7 +15,7 @@ export const usePosts = (): UsePostReturn => {
    ];
 
    const result = {
-      status: "pending",
+      status: "fulfilled",
       data: posts,
       error: {},
       isFetching: false,

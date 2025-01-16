@@ -3,7 +3,7 @@
 import React from "react";
 import { createSyncStoragePersister } from "@tanstack/query-sync-storage-persister";
 import { QueryClient } from "@tanstack/react-query";
-import { PersistQueryClientProvider } from "@tanstack/react-query-persist-client";
+import { Persister, PersistQueryClientProvider } from "@tanstack/react-query-persist-client";
 
 const queryCilent = new QueryClient({
    defaultOptions: {
@@ -13,9 +13,12 @@ const queryCilent = new QueryClient({
    },
 });
 
-const persister = createSyncStoragePersister({
-   storage: window.localStorage,
-});
+const persister =
+   typeof window !== "undefined"
+      ? createSyncStoragePersister({
+           storage: window.localStorage,
+        })
+      : (undefined as unknown as Persister);
 
 interface ProviderPersistProps {
    children: React.ReactNode;
