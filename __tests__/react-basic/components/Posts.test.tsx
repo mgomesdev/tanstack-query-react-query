@@ -7,13 +7,12 @@ jest.mock("../../../src/app/react-basic/hooks/usePosts");
 
 describe("Posts: react-basic", () => {
    const mockSetPostID = jest.fn();
-   const mockUsePosts = jest.fn();
 
    const mockUsePostsReturn = {
       status: "pending",
       data: [
-         { id: 1, title: "Post 1", body: "Body 1" },
-         { id: 2, title: "Post 2", body: "Body 2" },
+         { userId: 1, id: 1, title: "Post 1", body: "Body 1" },
+         { userId: 1, id: 2, title: "Post 2", body: "Body 2" },
       ],
       error: {},
       isFetching: false,
@@ -23,27 +22,20 @@ describe("Posts: react-basic", () => {
       jest.clearAllMocks();
    });
 
-   it.only("Deve mostrar o titulo 'Posts'", async () => {
-      (usePosts as jest.Mock).mockResolvedValue({
-         status: {},
-         data: mockUsePostsReturn.data,
-      });
+   it("Deve mostrar o titulo 'Posts'", () => {
+      (usePosts as jest.Mock).mockReturnValue(mockUsePostsReturn);
 
-      render(<Posts setPostID={mockSetPostID} usePosts={mockUsePosts} />);
+      render(<Posts setPostID={mockSetPostID} usePosts={usePosts} />);
 
-      await waitFor(() => {
-         expect(screen.getByText("Posts")).toBeInTheDocument();
-      });
+      expect(screen.getByText("Posts")).toBeInTheDocument();
    });
 
    it("Deve mostrar o 'Loading' enquanto busca os dados", async () => {
       (usePosts as jest.Mock).mockReturnValue(mockUsePostsReturn);
 
-      render(<Posts setPostID={mockSetPostID} usePosts={mockUsePosts} />);
+      render(<Posts setPostID={mockSetPostID} usePosts={usePosts} />);
 
-      await waitFor(() => {
-         expect(screen.getByText("Loading..."));
-      });
+      expect(screen.getByText("Loading..."));
    });
 
    it("Deve mostrar a mensagem de erro se der erro na busca dos dados", async () => {
@@ -55,11 +47,9 @@ describe("Posts: react-basic", () => {
          },
       });
 
-      render(<Posts setPostID={mockSetPostID} usePosts={mockUsePosts} />);
+      render(<Posts setPostID={mockSetPostID} usePosts={usePosts} />);
 
-      await waitFor(() => {
-         expect(screen.getByText("Error: Ocorreu um erro!")).toBeInTheDocument();
-      });
+      expect(screen.getByText("Error: Ocorreu um erro!")).toBeInTheDocument();
    });
 
    it("Deve mostrar os posts corretamente, quando os dados forem buscados com sucesso", async () => {
@@ -70,7 +60,7 @@ describe("Posts: react-basic", () => {
 
       render(
          <LayoutReactBasic>
-            <Posts setPostID={mockSetPostID} usePosts={mockUsePosts} />
+            <Posts setPostID={mockSetPostID} usePosts={usePosts} />
          </LayoutReactBasic>
       );
 
@@ -89,7 +79,7 @@ describe("Posts: react-basic", () => {
 
       render(
          <LayoutReactBasic>
-            <Posts setPostID={mockSetPostID} usePosts={mockUsePosts} />
+            <Posts setPostID={mockSetPostID} usePosts={usePosts} />
          </LayoutReactBasic>
       );
 

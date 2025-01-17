@@ -12,9 +12,6 @@ interface PostsProps {
 function Posts({ setPostID, usePosts }: PostsProps) {
    const { status, data, error, isFetching } = usePosts();
 
-   const a = usePosts();
-   console.log(a);
-
    return (
       <div>
          <h1>Posts</h1>
