@@ -1,36 +1,17 @@
+import { useQuery } from "@tanstack/react-query";
 import PostSchema from "../schemas/PostSchema";
 
-export interface UsePostReturn {
-   status: string;
-   data: Array<PostSchema>;
-   error: {
-      message?: string;
-   };
-   isFetching: boolean;
+const getPostById = async (id: number): Promise<PostSchema> => {
+   const response = await fetch(`https://jsonplaceholder.typicode.com/posts/${id}`);
+   return await response.json();
+};
+
+function usePost(postId: number) {
+   return useQuery({
+      queryKey: ["post", postId],
+      queryFn: () => getPostById(postId),
+      enabled: !!postId,
+   });
 }
 
-export const usePost = (postID: number): UsePostReturn => {
-   const posts = [
-      {
-         id: 1,
-         title: "title1",
-         body: "body1",
-      },
-      {
-         id: 2,
-         title: "title2",
-         body: "body2",
-      },
-   ];
-
-   const filterPosts = posts.filter((post) => post.id === postID);
-
-   const result = {
-      status: "pending",
-      data: filterPosts,
-      error: {},
-      isFetching: false,
-   };
-
-   return result;
-};
+export default usePost;

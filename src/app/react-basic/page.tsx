@@ -3,22 +3,7 @@
 import React, { useState } from "react";
 import Post from "./components/Post";
 import Posts from "./components/Posts";
-import { useQuery } from "@tanstack/react-query";
-import PostSchema from "./schemas/PostSchema";
-import { usePosts } from "./hooks/usePosts";
-
-const getPostById = async (id: number): Promise<PostSchema> => {
-   const response = await fetch(`https://jsonplaceholder.typicode.com/posts/${id}`);
-   return await response.json();
-};
-
-function usePost(postId: number) {
-   return useQuery({
-      queryKey: ["post", postId],
-      queryFn: () => getPostById(postId),
-      enabled: !!postId,
-   });
-}
+import usePosts from "./hooks/usePosts";
 
 function PageReactBasic() {
    const [postID, setPostID] = useState(-1);

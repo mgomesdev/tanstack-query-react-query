@@ -1,7 +1,7 @@
 import { useQuery } from "@tanstack/react-query";
 import PostSchema from "../schemas/PostSchema";
 
-export function usePosts() {
+function usePosts() {
    return useQuery({
       queryKey: ["posts"],
       queryFn: async (): Promise<PostSchema[]> => {
@@ -10,3 +10,5 @@ export function usePosts() {
       },
    });
 }
+
+export default usePosts;

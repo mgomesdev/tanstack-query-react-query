@@ -1,5 +1,5 @@
 import Post from "@/app/react-basic/components/Post";
-import { usePost } from "@/app/react-basic/hooks/usePost";
+import usePost from "@/app/react-basic/hooks/usePost";
 import { fireEvent, render, screen } from "@testing-library/react";
 
 jest.mock("../../../src/app/react-basic/hooks/usePost");
@@ -8,6 +8,7 @@ describe("Post", () => {
    const mockUsePostResponse = {
       status: "fullied",
       data: {
+         userId: 7,
          title: "title",
          body: "body",
       },

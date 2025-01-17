@@ -1,7 +1,7 @@
 import { render, screen, waitFor } from "@testing-library/react";
 import Posts from "@/app/react-basic/components/Posts";
 import LayoutReactBasic from "@/app/react-basic/layout";
-import { usePosts } from "@/app/react-basic/hooks/usePosts";
+import usePosts from "@/app/react-basic/hooks/usePosts";
 
 jest.mock("../../../src/app/react-basic/hooks/usePosts");
 
