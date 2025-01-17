@@ -1,4 +1,4 @@
-import { usePost } from "@/app/react-basic/hooks/usePost";
+import usePost from "@/app/react-basic/hooks/usePost";
 
 jest.mock("../../../src/app/react-basic/hooks/usePost");
 
